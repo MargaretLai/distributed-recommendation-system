@@ -1,17 +1,20 @@
 server:
-   port: 0
+  port: 8081
 
 spring:
   application:
     name: recommendation-service
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
 management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health,info
+
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

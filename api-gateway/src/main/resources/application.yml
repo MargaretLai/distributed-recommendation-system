@@ -7,12 +7,26 @@ spring:
 
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+      routes:
+        - id: recommendation-service
+          uri: lb://recommendation-service
+          predicates:
+            - Path=/recommendation-service/**
+          filters:
+            - StripPrefix=1
+
+THIS_SHOULD_CRASH: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info
 
 eureka:
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
