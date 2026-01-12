@@ -5,6 +5,12 @@ spring:
   application:
     name: recommendation-service
 
+  cassandra:
+    contact-points: 127.0.0.1
+    port: 9042
+    keyspace-name: recommendation
+    local-datacenter: datacenter1
+
 management:
   endpoints:
     web:

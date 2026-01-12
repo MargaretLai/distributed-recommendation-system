@@ -15,8 +15,6 @@ spring:
           filters:
             - StripPrefix=1
 
-THIS_SHOULD_CRASH: true
-
 management:
   endpoints:
     web:
