@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.recommendationservice.recommendation.UserRecommendation;
-import com.example.recommendationservice.recommendation.UserRecommendationRepository;
+import com.example.recommendationservice.service.RecommendationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserRecommendationController {
 
-    private final UserRecommendationRepository repository;
+    private final RecommendationService recommendationService;
 
-    public UserRecommendationController(UserRecommendationRepository repository) {
-        this.repository = repository;
+    public UserRecommendationController(RecommendationService recommendationService) {
+        this.recommendationService = recommendationService;
     }
 
     @GetMapping("/recommendations/{userId}")
     public List<UserRecommendation> getRecommendations(
             @PathVariable UUID userId
     ) {
-        return repository.findByKeyUserId(userId);
+        return recommendationService.getRecommendations(userId);
     }
 }
-
